@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const path = require('path');
 const connectDB = require('./src/config/db');
 const apiRoutes = require('./src/routes');
 const errorHandler = require('./src/middleware/errorHandler');
@@ -17,11 +18,19 @@ app.use(morgan('dev'));
 
 connectDB();
 
-app.get('/', (req, res) => {
+// Serve static files from React build
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('/api/', (req, res) => {
   res.send('Pro-Tasker API is running');
 });
 
 app.use('/api', apiRoutes);
+
+// Serve React app for all non-API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
 
 app.use(errorHandler);
 

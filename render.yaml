@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: pro-tasker-server
+    env: node
+    region: oregon
+    plan: free
+    branch: master
+    buildCommand: cd client && npm install && npm run build && cd ..
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: PORT
+        value: "3000"
