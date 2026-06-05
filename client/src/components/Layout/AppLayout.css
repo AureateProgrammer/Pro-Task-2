@@ -1,0 +1,98 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #2c3e50, #1a252f);
+  color: #ecf0f1;
+  padding: 1rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar-header .brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-link {
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-user {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+
+.sidebar-logout {
+  align-self: stretch;
+  padding: 0.5rem;
+}
+
+.app-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  background: #f6f8fa;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: white;
+  border-bottom: 1px solid #e6eaef;
+}
+
+.topbar-toggle {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.topbar-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.main-content {
+  padding: 1.25rem;
+  flex: 1 1 auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-sidebar {
+    display: none;
+  }
+
+  .app-layout .app-main {
+    margin-left: 0;
+  }
+}

@@ -17,6 +17,10 @@ app.use(morgan('dev'));
 
 connectDB();
 
+app.get('/', (req, res) => {
+  res.send('Pro-Tasker API is running');
+});
+
 app.use('/api', apiRoutes);
 
 app.use(errorHandler);
@@ -24,3 +28,4 @@ app.use(errorHandler);
 app.listen(port, () => {
   console.log(`Pro-Tasker API running on http://localhost:${port}`);
 });
+

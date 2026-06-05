@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import Navbar from './components/Layout/Navbar';
+import AppLayout from './components/Layout/AppLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
@@ -23,57 +23,57 @@ function App() {
 
           {/* Protected Routes */}
           <Route
-            path="*"
+            path="/"
             element={
-              <>
-                <Navbar />
-                <Routes>
-                  <Route
-                    path="/"
-                    element={
-                      <ProtectedRoute>
-                        <Dashboard />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/projects"
-                    element={
-                      <ProtectedRoute>
-                        <ProjectList />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/projects/new"
-                    element={
-                      <ProtectedRoute>
-                        <ProjectForm />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/projects/:id"
-                    element={
-                      <ProtectedRoute>
-                        <ProjectDetail />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/projects/:id/edit"
-                    element={
-                      <ProtectedRoute>
-                        <ProjectForm />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route path="/404" element={<NotFound />} />
-                  <Route path="*" element={<Navigate to="/404" replace />} />
-                </Routes>
-              </>
+              <ProtectedRoute>
+                <AppLayout>
+                  <Dashboard />
+                </AppLayout>
+              </ProtectedRoute>
             }
           />
+          <Route
+            path="/projects"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <ProjectList />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects/new"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <ProjectForm />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects/:id"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <ProjectDetail />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/projects/:id/edit"
+            element={
+              <ProtectedRoute>
+                <AppLayout>
+                  <ProjectForm />
+                </AppLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
     </Router>
