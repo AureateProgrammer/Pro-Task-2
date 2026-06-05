@@ -5,7 +5,9 @@ services:
     region: oregon
     plan: free
     branch: master
-    buildCommand: cd client && npm install && npm run build && cd ..
+    # install server deps first so server modules (express, etc.) are available at runtime,
+    # then install client deps and build the React app
+    buildCommand: npm install && cd client && npm install && npm run build && cd ..
     startCommand: node server.js
     envVars:
       - key: NODE_ENV
