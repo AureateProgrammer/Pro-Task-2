@@ -11,12 +11,6 @@ const ProjectForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  useEffect(() => {
-    if (id) {
-      fetchProject();
-    }
-  }, [id]);
-
   const fetchProject = async () => {
     try {
       const response = await api.get(`/projects/${id}`);
@@ -27,6 +21,12 @@ const ProjectForm = () => {
       setError(err.response?.data?.message || 'Failed to fetch project');
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      fetchProject();
+    }
+  }, [id, fetchProject]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
